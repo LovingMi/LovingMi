@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>粤康码（广州）</title>
+    <title></title>
     <style>
       html,
       body,
@@ -234,7 +234,15 @@
         left: 16px;
         border-radius: 10px;
         padding: 3px;
-        background: #0fb2eb;
+      }
+      .background_24{
+        background: linear-gradient( #78dcff, #0fb2eb);
+      }
+      .background_48{
+        background: linear-gradient( #AA87EB, #8658D5);
+      }
+      .background_72{
+        background: linear-gradient( #4FD9BF, #0AB99A);
       }
       .result_box .result{
         text-align: center;
@@ -245,6 +253,8 @@
       .result_box .title{
         color: #fff;
         padding: 5px;
+        font-size: 14px;
+        font-weight: 600;
       }
       .result_box .hours{
         color: #fff;
@@ -258,32 +268,40 @@
         font-size: 13px;
       }
       .result_box .detail{
-        color: #0fb2eb;
         background: #fff;
         display: inline-block;
-        padding: 5px 17px;
+        padding: 4px 16px;
         font-size: 14px;
         border-radius: 15px;
+      }
+      .color_24{
+        color: #0fb2eb;
+      }
+      .color_48{
+        color: #8658D5;
+      }
+      .color_72{
+        color: #0AB99A;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="time">
-        <div id="time">2022/03/15 14:35:22</div>
+        <div id="time"></div>
       </div>
 
       <div class="tip_box"></div>
 
-      <div class="result_box">
+      <div class="result_box background_24">
         <div class="result">
           <p class="title">核酸检测结果</p>
           <p class="hours">
-            <span id="hour">24</span>
+            <span id="hour"></span>
             <span>小时阴性</span>
           </p>
           <p id="checkTime">2022-03-15 18:47</p>
-          <p class="detail">点击查看</p>
+          <p class="detail color_24">点击查看</p>
         </div>
       </div>
     </div>
@@ -316,11 +334,46 @@
         return null;
       };
 
+      const title = document.querySelector('title')
+      const result_box = document.querySelector('.result_box')
+      const detail = document.querySelector('.detail')
       const timeBox = document.querySelector("#time");
+      const hour = document.querySelector("#hour");
+      const checkTime = document.querySelector("#checkTime");
+
+      const hourFlag = getUrlParam('hour') == '72' ? '72' : getUrlParam('hour') == '24' ? '24' : '48'
+
+      if(hourFlag == '24'){
+        result_box.className = 'result_box background_24'
+        detail.className = 'detail color_24'
+        const now = new Date()
+        const before = now.setHours(now.getHours() - 12)
+        const checkTimeDate = dateFormater('YYYY-MM-DD HH:mm:ss', before)
+        checkTime.innerText = checkTimeDate
+      }else if(hourFlag == '48'){
+        result_box.className = 'result_box background_48'
+        detail.className = 'detail color_48'
+        const now = new Date()
+        const before = now.setHours(now.getHours() - 25)
+        const checkTimeDate = dateFormater('YYYY-MM-DD HH:mm:ss', before)
+        checkTime.innerText = checkTimeDate
+      }else if(hourFlag == '72'){
+        result_box.className = 'result_box background_72'
+        detail.className = 'detail color_72'
+        const now = new Date()
+        const before = now.setHours(now.getHours() - 50)
+        const checkTimeDate = dateFormater('YYYY-MM-DD HH:mm:ss', before)
+        checkTime.innerText = checkTimeDate
+      }
+
+      hour.innerText = hourFlag
+      title.innerText = '粤康码（广州）'
 
       setInterval(() => {
         timeBox.innerText = dateFormater("YYYY/MM/DD HH:mm:ss");
       }, 1000);
+
+      
     </script>
   </body>
 </html>
