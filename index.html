@@ -199,89 +199,84 @@
         background-color: #3686e2;
       }
       .tip_box {
-        width: 286px;
+        width: 298px;
         height: 41px;
-        border: 2px solid;
+        border: 2px solid #fff;
         border-radius: 26px;
-        position: absolute;
         font-size: 25px;
-        top: 25px;
-        left: 50%;
-        transform: translateX(-50%);
+        margin: 0 auto;
+        margin-top: -43px;
       }
 
       .tip_box {
-        animation: glow 400ms ease-out infinite alternate;
+        animation: myMove 500ms ease-in infinite alternate;
       }
-      @keyframes glow {
+      @keyframes myMove {
         0% {
           opacity: 0;
-          border-color: rgb(231, 231, 231);
-          box-shadow: 0 0 5px rgba(230, 227, 227, 0.2),
-            inset 0 0 5px rgba(224, 224, 224, 0.1), 0 1px 0 rgb(226, 226, 226);
+          transform: scale(1, 1);
         }
+
         100% {
-          padding: 3px 2px 4px;
-          top: 18px;
-          border-color: rgb(255, 255, 255);
-          box-shadow: 0 0 5px rgba(255, 255, 255, 0.2),
-            inset 0 0 5px rgba(255, 255, 255, 0.1), 0 1px 0 rgb(255, 255, 255);
+          opacity: 1;
+          transform: scale(1.1, 1.23);
         }
       }
-      .result_box{
+
+      .result_box {
         position: absolute;
         bottom: 52px;
         left: 16px;
         border-radius: 10px;
         padding: 3px;
       }
-      .background_24{
-        background: linear-gradient( #78dcff, #0fb2eb);
+      .background_24 {
+        background: linear-gradient(#78dcff, #0fb2eb);
       }
-      .background_48{
-        background: linear-gradient( #AA87EB, #8658D5);
+      .background_48 {
+        background: linear-gradient(#aa87eb, #8658d5);
       }
-      .background_72{
-        background: linear-gradient( #4FD9BF, #0AB99A);
+      .background_72 {
+        background: linear-gradient(#4fd9bf, #0ab99a);
       }
-      .result_box .result{
+      .result_box .result {
         text-align: center;
         padding: 9px 29px 10px;
         border: 1px solid #fff;
         border-radius: 10px;
       }
-      .result_box .title{
+      .result_box .title {
         color: #fff;
         padding: 5px;
         font-size: 14px;
         font-weight: 600;
       }
-      .result_box .hours{
+      .result_box .hours {
         color: #fff;
       }
-      .result_box #hour{
+      .result_box #hour {
         font-size: 42px;
       }
-      .result_box #checkTime{
+      .result_box #checkTime {
         color: #fff;
         padding: 7px 0;
         font-size: 13px;
       }
-      .result_box .detail{
+      .result_box .detail {
         background: #fff;
         display: inline-block;
         padding: 4px 16px;
         font-size: 12px;
         border-radius: 15px;
       }
-      .color_24{
+      .color_24 {
         color: #0fb2eb;
       }
-      .color_48{
-        color: #8658D5;
+      .color_48 {
+        color: #8658d5;
       }
-      .color_72{
-        color: #0AB99A;
+      .color_72 {
+        color: #0ab99a;
       }
     </style>
   </head>
@@ -334,46 +329,49 @@
         return null;
       };
 
-      const title = document.querySelector('title')
-      const result_box = document.querySelector('.result_box')
-      const detail = document.querySelector('.detail')
+      const title = document.querySelector("title");
+      const result_box = document.querySelector(".result_box");
+      const detail = document.querySelector(".detail");
       const timeBox = document.querySelector("#time");
       const hour = document.querySelector("#hour");
       const checkTime = document.querySelector("#checkTime");
 
-      const hourFlag = getUrlParam('hour') == '72' ? '72' : getUrlParam('hour') == '24' ? '24' : '48'
+      const hourFlag =
+        getUrlParam("hour") == "72"
+          ? "72"
+          : getUrlParam("hour") == "24"
+          ? "24"
+          : "48";
 
-      if(hourFlag == '24'){
-        result_box.className = 'result_box background_24'
-        detail.className = 'detail color_24'
-        const now = new Date()
-        const before = now.setHours(now.getHours() - 12)
-        const checkTimeDate = dateFormater('YYYY-MM-DD HH:mm:ss', before)
-        checkTime.innerText = checkTimeDate
-      }else if(hourFlag == '48'){
-        result_box.className = 'result_box background_48'
-        detail.className = 'detail color_48'
-        const now = new Date()
-        const before = now.setHours(now.getHours() - 25)
-        const checkTimeDate = dateFormater('YYYY-MM-DD HH:mm:ss', before)
-        checkTime.innerText = checkTimeDate
-      }else if(hourFlag == '72'){
-        result_box.className = 'result_box background_72'
-        detail.className = 'detail color_72'
-        const now = new Date()
-        const before = now.setHours(now.getHours() - 50)
-        const checkTimeDate = dateFormater('YYYY-MM-DD HH:mm:ss', before)
-        checkTime.innerText = checkTimeDate
+      if (hourFlag == "24") {
+        result_box.className = "result_box background_24";
+        detail.className = "detail color_24";
+        const now = new Date();
+        const before = now.setHours(now.getHours() - 12);
+        const checkTimeDate = dateFormater("YYYY-MM-DD HH:mm:ss", before);
+        checkTime.innerText = checkTimeDate;
+      } else if (hourFlag == "48") {
+        result_box.className = "result_box background_48";
+        detail.className = "detail color_48";
+        const now = new Date();
+        const before = now.setHours(now.getHours() - 25);
+        const checkTimeDate = dateFormater("YYYY-MM-DD HH:mm:ss", before);
+        checkTime.innerText = checkTimeDate;
+      } else if (hourFlag == "72") {
+        result_box.className = "result_box background_72";
+        detail.className = "detail color_72";
+        const now = new Date();
+        const before = now.setHours(now.getHours() - 50);
+        const checkTimeDate = dateFormater("YYYY-MM-DD HH:mm:ss", before);
+        checkTime.innerText = checkTimeDate;
       }
 
-      hour.innerText = hourFlag
-      title.innerText = '粤康码（广州）'
+      hour.innerText = hourFlag;
+      title.innerText = "粤康码（广州）";
 
       setInterval(() => {
         timeBox.innerText = dateFormater("YYYY/MM/DD HH:mm:ss");
       }, 1000);
-
-      
     </script>
   </body>
 </html>
