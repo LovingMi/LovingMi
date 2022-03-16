@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>粤康码（广州）</title>
+    <style>
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video,
+      input {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font-weight: normal;
+        vertical-align: baseline;
+      }
+
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+
+      body {
+        line-height: 1;
+      }
+
+      blockquote,
+      q {
+        quotes: none;
+      }
+
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      /* custom */
+      a {
+        color: #7e8c8d;
+        text-decoration: none;
+        -webkit-backface-visibility: hidden;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+
+      ::-webkit-scrollbar-track-piece {
+        background-color: rgba(0, 0, 0, 0.2);
+        -webkit-border-radius: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb:vertical {
+        height: 5px;
+        background-color: rgba(125, 125, 125, 0.7);
+        -webkit-border-radius: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb:horizontal {
+        width: 5px;
+        background-color: rgba(125, 125, 125, 0.7);
+        -webkit-border-radius: 6px;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        -webkit-text-size-adjust: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+      .container {
+        height: 100%;
+        background: url(./code.jpg) no-repeat;
+        background-size: cover;
+        background-position-x: center;
+        position: relative;
+      }
+      .time {
+        padding-top: 26px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #time {
+        color: #fff;
+        /* border: 2px solid #fff; */
+        border-radius: 26px;
+        padding: 8px 20px;
+        font-size: 25px;
+        background-color: #3686e2;
+      }
+      .tip_box {
+        width: 286px;
+        height: 41px;
+        border: 2px solid;
+        border-radius: 26px;
+        position: absolute;
+        font-size: 25px;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .tip_box {
+        animation: glow 400ms ease-out infinite alternate;
+      }
+      @keyframes glow {
+        0% {
+          opacity: 0;
+          border-color: rgb(231, 231, 231);
+          box-shadow: 0 0 5px rgba(230, 227, 227, 0.2),
+            inset 0 0 5px rgba(224, 224, 224, 0.1), 0 1px 0 rgb(226, 226, 226);
+        }
+        100% {
+          padding: 4px;
+          top: 19px;
+          border-color: rgb(255, 255, 255);
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.2),
+            inset 0 0 5px rgba(255, 255, 255, 0.1), 0 1px 0 rgb(255, 255, 255);
+        }
+      }
+      .result_box{
+        position: absolute;
+        bottom: 74px;
+        left: 14px;
+        border-radius: 10px;
+        padding: 3px;
+        background: #46c6f3;
+      }
+      .result_box .result{
+        text-align: center;
+        padding: 11px 34px;
+        border: 1px solid #fff;
+        border-radius: 10px;
+      }
+      .result_box .title{
+        color: #fff;
+        padding-bottom: 10px;
+      }
+      .result_box .hours{
+        color: #fff;
+      }
+      .result_box #hour{
+        font-size: 47px;
+      }
+      .result_box #checkTime{
+        color: #fff;
+        padding: 7px 0;
+        font-size: 13px;
+      }
+      .result_box .detail{
+        color: #46c6f3;
+        background: #fff;
+        display: inline-block;
+        padding: 5px 17px;
+        font-size: 14px;
+        border-radius: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="time">
+        <div id="time">2022/03/15 14:35:22</div>
+      </div>
+
+      <div class="tip_box"></div>
+
+      <div class="result_box">
+        <div class="result">
+          <p class="title">核酸检测结果</p>
+          <p class="hours">
+            <span id="hour">24</span>
+            <span>小时阴性</span>
+          </p>
+          <p id="checkTime">2022-03-15 18:47</p>
+          <p class="detail">点击查看</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const dateFormater = (formater, time) => {
+        let date = time ? new Date(time) : new Date(),
+          Y = date.getFullYear() + "",
+          M = date.getMonth() + 1,
+          D = date.getDate(),
+          H = date.getHours(),
+          m = date.getMinutes(),
+          s = date.getSeconds();
+        return formater
+          .replace(/YYYY|yyyy/g, Y)
+          .replace(/YY|yy/g, Y.substr(2, 2))
+          .replace(/MM/g, (M < 10 ? "0" : "") + M)
+          .replace(/DD/g, (D < 10 ? "0" : "") + D)
+          .replace(/HH|hh/g, (H < 10 ? "0" : "") + H)
+          .replace(/mm/g, (m < 10 ? "0" : "") + m)
+          .replace(/ss/g, (s < 10 ? "0" : "") + s);
+      };
+
+      const getUrlParam = (name) => {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+          return decodeURI(r[2]);
+        }
+        return null;
+      };
+
+      const timeBox = document.querySelector("#time");
+
+      setInterval(() => {
+        timeBox.innerText = dateFormater("YYYY/MM/DD HH:mm:ss");
+      }, 1000);
+    </script>
+  </body>
+</html>
