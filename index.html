@@ -344,28 +344,35 @@
           ? "24"
           : "48";
 
-      if (hourFlag == "24") {
-        result_box.className = "result_box background_24";
-        detail.className = "detail color_24";
+      const timeObj = {
+        '24': {
+          resultName: 'result_box background_24',
+          detailName: 'detail color_24',
+          hour: 12
+        },
+        '48': {
+          resultName: 'result_box background_48',
+          detailName: 'detail color_48',
+          hour: 26
+        },
+        '72': {
+          resultName: 'result_box background_72',
+          detailName: 'detail color_72',
+          hour: 52
+        },
+      }
+
+      const setPage = (hourFlag) => {
+        const { resultName, detailName, hour } = timeObj[hourFlag]
+        result_box.className = resultName 
+        detail.className = detailName
         const now = new Date();
-        const before = now.setHours(now.getHours() - 12);
-        const checkTimeDate = dateFormater("YYYY-MM-DD HH:mm", before);
-        checkTime.innerText = checkTimeDate;
-      } else if (hourFlag == "48") {
-        result_box.className = "result_box background_48";
-        detail.className = "detail color_48";
-        const now = new Date();
-        const before = now.setHours(now.getHours() - 26);
-        const checkTimeDate = dateFormater("YYYY-MM-DD HH:mm", before);
-        checkTime.innerText = checkTimeDate;
-      } else if (hourFlag == "72") {
-        result_box.className = "result_box background_72";
-        detail.className = "detail color_72";
-        const now = new Date();
-        const before = now.setHours(now.getHours() - 52);
+        const before = now.setHours(now.getHours() - hour);
         const checkTimeDate = dateFormater("YYYY-MM-DD HH:mm", before);
         checkTime.innerText = checkTimeDate;
       }
+
+      setPage(hourFlag)
 
       hour.innerText = hourFlag;
       title.innerText = "粤康码（广州）";
